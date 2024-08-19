@@ -16,13 +16,25 @@
     "Visualization"
   ],
   "activationEvents": [],
+  "capabilities": {
+    "virtualWorkspaces": true,
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "%workspaceTrust%",
+      "restrictedConfigurations": [
+        "markdown.styles"
+      ]
+    }
+  },
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "djot-vscode.helloWorld",
-        "title": "Hello World"
-      }
+				"command": "djot.saveHTML",
+				"title": "%djot.saveHTML.title%",
+				"category": "Djot",
+				"icon": "$(globe)"
+			}
     ],
     "languages": [
       {
@@ -95,14 +107,17 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.92.0",
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",
+    "@types/vscode": "^1.92.0",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.11.0",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5",
     "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.4.0"
+    "@vscode/test-electron": "^2.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@djot/djot": "^0.3.1"
   }
 }
