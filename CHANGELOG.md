@@ -6,4 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Added
+
+- Save as HTML support
+- TextMate Grammar (Thanks to wisim3000! See: <https://github.com/wisim3000/Djot-Marker>)
 - Initial release
