@@ -1,0 +1,6 @@
+{
+	"displayName": "Djot language features",
+	"description": "Provides rich language support for Djot.",
+	
+	"djot.saveHTML.title": "Save HTML Document"
+}
