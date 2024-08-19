@@ -20,6 +20,10 @@ Portions of this extension will be based off Microsoft's Markdown extensions for
 
 If you like djot and would like to contribute, make a PR! This extension is **heavily** work in progress, so there's a lot of work that needs to be done!
 
+---
+---
+---
+
 # djot-vscode README
 
 This is the README for your extension "djot-vscode". After writing up a brief description, we recommend including the following sections.
