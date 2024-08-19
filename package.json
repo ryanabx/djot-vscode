@@ -6,6 +6,7 @@
   "publisher": "ryanabx",
   "author": "ryanabx, wisim3000, contributors",
   "repository": "https://github.com/ryanabx/djot-vscode",
+  "bugs": "https://github.com/ryanabx/djot-vscode/issues/new",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.92.0"
