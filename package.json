@@ -4,13 +4,16 @@
   "description": "djot language support for vscode",
   "license": "MIT",
   "publisher": "ryanabx",
-  "author": "ryanabx",
+  "author": "ryanabx, wisim3000, contributors",
+  "repository": "https://github.com/ryanabx/djot-vscode",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.92.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages",
+    "Other",
+    "Visualization"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
@@ -19,6 +22,67 @@
       {
         "command": "djot-vscode.helloWorld",
         "title": "Hello World"
+      }
+    ],
+    "languages": [
+      {
+        "id": "djot",
+        "aliases": [
+          "Djot",
+          "djot"
+        ],
+        "extensions": [
+          ".dj",
+          ".djot"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "djot",
+        "scopeName": "source.djot",
+        "path": "./syntaxes/djot.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[djot]": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+          "other": "off",
+          "comments": "off",
+          "strings": "inline"
+        }
+      }
+    },
+    "configuration": {
+      "title": "Djot Marker",
+      "properties": {
+        "djot.usingBuiltInShortcuts.essential": {
+          "type": "boolean",
+          "default": true,
+          "description": "Default:\nCtrl+I --> Italic\nCtrl+B --> Bold"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "editor.action.insertSnippet",
+        "key": "ctrl+b",
+        "mac": "cmd+b",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == djot && config.djot.usingBuiltInShortcuts.heading",
+        "args": {
+          "snippet": "*${TM_SELECTED_TEXT:$1}*"
+        }
+      },
+      {
+        "command": "editor.action.insertSnippet",
+        "key": "ctrl+i",
+        "mac": "cmd+i",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == djot && config.djot.usingBuiltInShortcuts.heading",
+        "args": {
+          "snippet": "_${TM_SELECTED_TEXT:$1}_"
+        }
       }
     ]
   },
