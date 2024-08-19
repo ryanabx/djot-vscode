@@ -6,7 +6,8 @@
   "publisher": "ryanabx",
   "author": "ryanabx, wisim3000, contributors",
   "repository": "https://github.com/ryanabx/djot-vscode",
-  "version": "0.0.1",
+  "bugs": "https://github.com/ryanabx/djot-vscode/issues/new",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -17,14 +18,6 @@
   ],
   "activationEvents": [],
   "capabilities": {
-    "virtualWorkspaces": true,
-    "untrustedWorkspaces": {
-      "supported": "limited",
-      "description": "%workspaceTrust%",
-      "restrictedConfigurations": [
-        "markdown.styles"
-      ]
-    }
   },
   "main": "./out/extension.js",
   "contributes": {
