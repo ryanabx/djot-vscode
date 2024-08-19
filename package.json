@@ -2,6 +2,9 @@
   "name": "djot-vscode",
   "displayName": "djot-vscode",
   "description": "djot language support for vscode",
+  "license": "MIT",
+  "publisher": "ryanabx",
+  "author": "ryanabx",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.92.0"
