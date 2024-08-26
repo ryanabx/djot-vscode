@@ -278,7 +278,8 @@ class DjotPreview extends Disposable implements WebviewResourceProvider {
 		// Another call to `doUpdate` may have happened.
 		// Make sure we are still updating for the correct document
 		if (this._currentVersion?.equals(pendingVersion)) {
-			this._updateWebviewContent(content.html, shouldReloadPage);
+			// this._updateWebviewContent(content.html, shouldReloadPage);
+			this._updateWebviewContent(content.html, true); // TODO: Fix this condition shouldReloadPage
 		}
 	}
 

@@ -107,7 +107,7 @@ export class DjDocumentRenderer {
 				${this._getScripts(resourceProvider, nonce)}
 			</body>
 			</html>`;
-		console.log("HEYEYEYEY");
+		console.log("renderDocument");
 		return {
 			html,
 		};
@@ -119,6 +119,7 @@ export class DjDocumentRenderer {
 	): Promise<DjotContentProviderOutput> {
 		const rendered = await this._engine.render(djotDocument, resourceProvider);
 		const html = `<div class="djot-body" dir="auto">${rendered.html}<div class="code-line" data-line="${djotDocument.lineCount}"></div></div>`;
+		console.log("renderBody");
 		return {
 			html,
 		};
