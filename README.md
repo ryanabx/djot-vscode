@@ -1,4 +1,6 @@
-# Work in progress Djot Visual Studio Code plugin!
+# Djot Visual Studio Code Extension
+
+![Djot](res/djot.png)
 
 [djot](https://github.com/jgm/djot) is a lightweight markup language similar to Markdown, developed by John MacFarlane.
 
