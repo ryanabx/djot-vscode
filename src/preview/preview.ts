@@ -256,7 +256,8 @@ class DjotPreview extends Disposable implements WebviewResourceProvider {
 			return;
 		}
 
-		const shouldReloadPage = forceUpdate || !this._currentVersion || this._currentVersion.resource.toString() !== pendingVersion.resource.toString() || !this._webviewPanel.visible;
+		const shouldReloadPage = true; // TODO: Fix this condition shouldReloadPage
+		// const shouldReloadPage = forceUpdate || !this._currentVersion || this._currentVersion.resource.toString() !== pendingVersion.resource.toString() || !this._webviewPanel.visible;
 		this._currentVersion = pendingVersion;
 
 		let selectedLine: number | undefined = undefined;
@@ -267,6 +268,7 @@ class DjotPreview extends Disposable implements WebviewResourceProvider {
 			}
 		}
 
+		
 		const content = await (shouldReloadPage
 			? this._contentProvider.renderDocument(document, this, this._previewConfigurations, this._line, selectedLine, this.state, this._imageInfo, this._disposeCts.token)
 			: this._contentProvider.renderBody(document, this));
@@ -274,8 +276,7 @@ class DjotPreview extends Disposable implements WebviewResourceProvider {
 		// Another call to `doUpdate` may have happened.
 		// Make sure we are still updating for the correct document
 		if (this._currentVersion?.equals(pendingVersion)) {
-			// this._updateWebviewContent(content.html, shouldReloadPage);
-			this._updateWebviewContent(content.html, true); // TODO: Fix this condition shouldReloadPage
+			this._updateWebviewContent(content.html, shouldReloadPage);
 		}
 	}
 
