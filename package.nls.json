@@ -2,5 +2,29 @@
 	"displayName": "Djot language features",
 	"description": "Provides rich language support for Djot.",
 	
-	"djot.saveHTML.title": "Export HTML Document"
+	"djot.saveHTML.title": "Export HTML Document",
+
+	"djot.copyImage.title": "Copy Image",
+	"djot.preview.breaks.desc": "Sets how line-breaks are rendered in the Djot preview. Setting it to `true` creates a `<br>` for newlines inside paragraphs.",
+	"djot.preview.linkify": "Convert URL-like text to links in the Djot preview.",
+	"djot.preview.typographer": "Enable some language-neutral replacement and quotes beautification in the Djot preview.",
+	"djot.preview.doubleClickToSwitchToEditor.desc": "Double-click in the Djot preview to switch to the editor.",
+	"djot.preview.fontFamily.desc": "Controls the font family used in the Djot preview.",
+	"djot.preview.fontSize.desc": "Controls the font size in pixels used in the Djot preview.",
+	"djot.preview.lineHeight.desc": "Controls the line height used in the Djot preview. This number is relative to the font size.",
+	"djot.preview.markEditorSelection.desc": "Mark the current editor selection in the Djot preview.",
+	"djot.preview.scrollEditorWithPreview.desc": "When a Djot preview is scrolled, update the view of the editor.",
+	"djot.preview.scrollPreviewWithEditor.desc": "When a Djot editor is scrolled, update the view of the preview.",
+	"djot.preview.title": "Open Preview",
+	"djot.previewSide.title": "Open Preview to the Side",
+	"djot.showLockedPreviewToSide.title": "Open Locked Preview to the Side",
+	"djot.showSource.title": "Show Source",
+	"djot.styles.dec": "A list of URLs or local paths to CSS style sheets to use from the Djot preview. Relative paths are interpreted relative to the folder open in the Explorer. If there is no open folder, they are interpreted relative to the location of the Djot file. All '\\' need to be written as '\\\\'.",
+	"djot.showPreviewSecuritySelector.title": "Change Preview Security Settings",
+	"djot.trace.extension.desc": "Enable debug logging for the Djot extension.",
+	"djot.trace.server.desc": "Traces the communication between VS Code and the Djot language server.",
+	"djot.server.log.desc": "Controls the logging level of the Djot language server.",
+	"djot.preview.refresh.title": "Refresh Preview",
+	"djot.preview.toggleLock.title": "Toggle Preview Locking",
+	"djot.findAllFileReferences": "Find File References"
 }

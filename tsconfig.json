@@ -1,5 +1,8 @@
 {
 	"compilerOptions": {
+		"moduleResolution": "Node16",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
 		"module": "Node16",
 		"target": "ES2022",
 		"outDir": "out",

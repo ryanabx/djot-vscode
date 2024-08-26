@@ -17,17 +17,192 @@
     "Visualization"
   ],
   "activationEvents": [],
-  "capabilities": {
-  },
+  "capabilities": {},
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-				"command": "djot.saveHTML",
-				"title": "%djot.saveHTML.title%",
-				"category": "Djot",
-				"icon": "$(globe)"
-			}
+        "command": "_djot.copyImage",
+        "title": "%djot.copyImage.title%",
+        "category": "Djot"
+      },
+      {
+        "command": "djot.showPreview",
+        "title": "%djot.preview.title%",
+        "category": "Djot",
+        "icon": {
+          "light": "./media/preview-light.svg",
+          "dark": "./media/preview-dark.svg"
+        }
+      },
+      {
+        "command": "djot.showPreviewToSide",
+        "title": "%djot.previewSide.title%",
+        "category": "Djot",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "djot.showLockedPreviewToSide",
+        "title": "%djot.showLockedPreviewToSide.title%",
+        "category": "Djot",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "djot.showSource",
+        "title": "%djot.showSource.title%",
+        "category": "Djot",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "djot.showPreviewSecuritySelector",
+        "title": "%djot.showPreviewSecuritySelector.title%",
+        "category": "Djot"
+      },
+      {
+        "command": "djot.preview.refresh",
+        "title": "%djot.preview.refresh.title%",
+        "category": "Djot"
+      },
+      {
+        "command": "djot.preview.toggleLock",
+        "title": "%djot.preview.toggleLock.title%",
+        "category": "Djot"
+      },
+      {
+        "command": "djot.findAllFileReferences",
+        "title": "%djot.findAllFileReferences%",
+        "category": "Djot"
+      },
+      {
+        "command": "djot.saveHTML",
+        "title": "%djot.saveHTML%",
+        "category": "Djot"
+      }
+    ],
+    "menus": {
+      "webview/context": [
+        {
+          "command": "_djot.copyImage",
+          "when": "webviewId == 'djot.preview' && webviewSection == 'image'"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "djot.showPreviewToSide",
+          "when": "editorLangId == djot && !notebookEditorFocused && !hasCustomDjotPreview",
+          "alt": "djot.showPreview",
+          "group": "navigation"
+        },
+        {
+          "command": "djot.showSource",
+          "when": "activeWebviewPanelId == 'djot.preview' || activeCustomEditorId == 'vscode.djot.preview.editor'",
+          "group": "navigation"
+        },
+        {
+          "command": "djot.preview.refresh",
+          "when": "activeWebviewPanelId == 'djot.preview' || activeCustomEditorId == 'vscode.djot.preview.editor'",
+          "group": "1_djot"
+        },
+        {
+          "command": "djot.preview.toggleLock",
+          "when": "activeWebviewPanelId == 'djot.preview' || activeCustomEditorId == 'vscode.djot.preview.editor'",
+          "group": "1_djot"
+        },
+        {
+          "command": "djot.showPreviewSecuritySelector",
+          "when": "activeWebviewPanelId == 'djot.preview' || activeCustomEditorId == 'vscode.djot.preview.editor'",
+          "group": "1_djot"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "djot.showPreview",
+          "when": "resourceLangId == djot && !hasCustomDjotPreview",
+          "group": "navigation"
+        },
+        {
+          "command": "djot.findAllFileReferences",
+          "when": "resourceLangId == djot",
+          "group": "4_search"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "djot.showPreview",
+          "when": "resourceLangId == djot && !hasCustomDjotPreview",
+          "group": "1_open"
+        },
+        {
+          "command": "djot.findAllFileReferences",
+          "when": "resourceLangId == djot"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "_djot.copyImage",
+          "when": "false"
+        },
+        {
+          "command": "djot.showPreview",
+          "when": "editorLangId == djot && !notebookEditorFocused",
+          "group": "navigation"
+        },
+        {
+          "command": "djot.showPreviewToSide",
+          "when": "editorLangId == djot && !notebookEditorFocused",
+          "group": "navigation"
+        },
+        {
+          "command": "djot.showLockedPreviewToSide",
+          "when": "editorLangId == djot && !notebookEditorFocused",
+          "group": "navigation"
+        },
+        {
+          "command": "djot.showSource",
+          "when": "activeWebviewPanelId == 'djot.preview' || activeCustomEditorId == 'vscode.djot.preview.editor'",
+          "group": "navigation"
+        },
+        {
+          "command": "djot.showPreviewSecuritySelector",
+          "when": "editorLangId == djot && !notebookEditorFocused"
+        },
+        {
+          "command": "djot.showPreviewSecuritySelector",
+          "when": "activeWebviewPanelId == 'djot.preview' || activeCustomEditorId == 'vscode.djot.preview.editor'"
+        },
+        {
+          "command": "djot.preview.toggleLock",
+          "when": "activeWebviewPanelId == 'djot.preview' || activeCustomEditorId == 'vscode.djot.preview.editor'"
+        },
+        {
+          "command": "djot.preview.refresh",
+          "when": "editorLangId == djot && !notebookEditorFocused"
+        },
+        {
+          "command": "djot.preview.refresh",
+          "when": "activeWebviewPanelId == 'djot.preview' || activeCustomEditorId == 'vscode.djot.preview.editor'"
+        },
+        {
+          "command": "djot.findAllFileReferences",
+          "when": "editorLangId == djot"
+        },
+        {
+          "command": "djot.saveHTML",
+          "when": "editorLangId == djot"
+        }
+      ]
+    },
+    "customEditors": [
+      {
+        "viewType": "vscode.djot.preview.editor",
+        "displayName": "Djot Preview",
+        "priority": "option",
+        "selector": [
+          {
+            "filenamePattern": "*.dj"
+          }
+        ]
+      }
     ],
     "languages": [
       {
@@ -111,6 +286,14 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@djot/djot": "^0.3.1"
+    "@djot/djot": "^0.3.1",
+    "dompurify": "^3.0.5",
+    "highlight.js": "^11.8.0",
+    "morphdom": "^2.6.1",
+    "picomatch": "^2.3.1",
+    "vscode-languageclient": "^8.0.2",
+    "vscode-languageserver-textdocument": "^1.0.11",
+    "vscode-djot-languageserver": "^0.5.0-alpha.8",
+    "vscode-uri": "^3.0.3"
   }
 }
