@@ -11,6 +11,7 @@ import { escapeAttribute, getNonce } from '../util/dom';
 import { WebviewResourceProvider } from '../util/resources';
 import { DjotPreviewConfiguration, DjotPreviewConfigurationManager } from './previewConfig';
 import { ContentSecurityPolicyArbiter, DjotPreviewSecurityLevel } from './security';
+import { DjotContributionProvider } from '../djotExtensions';
 
 
 /**
@@ -42,6 +43,7 @@ export class DjDocumentRenderer {
 		private readonly _engine: DjotEngine,
 		private readonly _context: vscode.ExtensionContext,
 		private readonly _cspArbiter: ContentSecurityPolicyArbiter,
+		private readonly _contributionProvider: DjotContributionProvider,
 		private readonly _logger: ILogger
 	) {
 		this.iconPath = {
@@ -105,6 +107,7 @@ export class DjDocumentRenderer {
 				${this._getScripts(resourceProvider, nonce)}
 			</body>
 			</html>`;
+		console.log("HEYEYEYEY");
 		return {
 			html,
 		};
@@ -200,6 +203,9 @@ export class DjDocumentRenderer {
 
 	private _getStyles(resourceProvider: WebviewResourceProvider, resource: vscode.Uri, config: DjotPreviewConfiguration, imageInfo: readonly ImageInfo[]): string {
 		const baseStyles: string[] = [];
+		for (const resource of this._contributionProvider.contributions.previewStyles) {
+			baseStyles.push(`<link rel="stylesheet" type="text/css" href="${escapeAttribute(resourceProvider.asWebviewUri(resource))}">`);
+		}
 
 		return `${baseStyles.join('\n')}
 			${this._computeCustomStyleSheetIncludes(resourceProvider, resource, config)}
@@ -208,6 +214,12 @@ export class DjDocumentRenderer {
 
 	private _getScripts(resourceProvider: WebviewResourceProvider, nonce: string): string {
 		const out: string[] = [];
+		for (const resource of this._contributionProvider.contributions.previewScripts) {
+			out.push(`<script async
+				src="${escapeAttribute(resourceProvider.asWebviewUri(resource))}"
+				nonce="${nonce}"
+				charset="UTF-8"></script>`);
+		}
 		return out.join('\n');
 	}
 
@@ -217,7 +229,9 @@ export class DjDocumentRenderer {
 		nonce: string
 	): string {
 		const rule = provider.cspSource;
+
 		switch (this._cspArbiter.getSecurityLevelForResource(resource)) {
+			
 			case DjotPreviewSecurityLevel.AllowInsecureContent:
 				return `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' ${rule} http: https: data:; media-src 'self' ${rule} http: https: data:; script-src 'nonce-${nonce}'; style-src 'self' ${rule} 'unsafe-inline' http: https: data:; font-src 'self' ${rule} http: https: data:;">`;
 

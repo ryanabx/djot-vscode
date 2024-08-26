@@ -20,7 +20,7 @@ async function showPreview(
 	let resource = uri;
 	if (!(resource instanceof vscode.Uri)) {
 		if (vscode.window.activeTextEditor) {
-			// we are relaxed and don't check for markdown files
+			// we are relaxed and don't check for djot files
 			resource = vscode.window.activeTextEditor.document.uri;
 		}
 	}

@@ -15,6 +15,7 @@ import { DjotPreviewConfigurationManager } from './previewConfig';
 import { scrollEditorToLine, StartingScrollFragment, StartingScrollLine, StartingScrollLocation } from './scrolling';
 import { getVisibleLine, LastScrollLocation, TopmostLineMonitor } from './topmostLineMonitor';
 import type { FromWebviewMessage, ToWebviewMessage } from '../../types/previewMessaging';
+import { DjotContributionProvider } from '../djotExtensions';
 
 export class PreviewDocumentVersion {
 
@@ -72,6 +73,7 @@ class DjotPreview extends Disposable implements WebviewResourceProvider {
 		private readonly _contentProvider: DjDocumentRenderer,
 		private readonly _previewConfigurations: DjotPreviewConfigurationManager,
 		private readonly _logger: ILogger,
+		private readonly _contributionProvider: DjotContributionProvider,
 	) {
 		super();
 
@@ -89,6 +91,10 @@ class DjotPreview extends Disposable implements WebviewResourceProvider {
 				this._scrollToFragment = startingScroll.fragment;
 				break;
 		}
+
+		this._register(_contributionProvider.onContributionsChanged(() => {
+			setTimeout(() => this.refresh(true), 0);
+		}));
 
 		this._register(vscode.workspace.onDidChangeTextDocument(event => {
 			if (this.isPreviewOf(event.document.uri)) {
@@ -221,6 +227,8 @@ class DjotPreview extends Disposable implements WebviewResourceProvider {
 			source: this._resource.toString()
 		});
 	}
+
+	static updateCounter: number = 0;
 
 	private async _updatePreview(forceUpdate?: boolean): Promise<void> {
 		clearTimeout(this._throttleTimer);
@@ -372,8 +380,24 @@ class DjotPreview extends Disposable implements WebviewResourceProvider {
 		return {
 			enableScripts: true,
 			enableForms: false,
-			localResourceRoots: []
+			localResourceRoots: this._getLocalResourceRoots()
 		};
+	}
+
+	private _getLocalResourceRoots(): ReadonlyArray<vscode.Uri> {
+		const baseRoots = Array.from(this._contributionProvider.contributions.previewResourceRoots);
+
+		const folder = vscode.workspace.getWorkspaceFolder(this._resource);
+		if (folder) {
+			const workspaceRoots = vscode.workspace.workspaceFolders?.map(folder => folder.uri);
+			if (workspaceRoots) {
+				baseRoots.push(...workspaceRoots);
+			}
+		} else {
+			baseRoots.push(uri.Utils.dirname(this._resource));
+		}
+
+		return baseRoots;
 	}
 
 	//#region WebviewResourceProvider
@@ -420,9 +444,10 @@ export class StaticDjotPreview extends Disposable implements IManagedDjotPreview
 		previewConfigurations: DjotPreviewConfigurationManager,
 		topmostLineMonitor: TopmostLineMonitor,
 		logger: ILogger,
+		contributionProvider: DjotContributionProvider,
 		scrollLine?: number,
 	): StaticDjotPreview {
-		return new StaticDjotPreview(webview, resource, contentProvider, previewConfigurations, topmostLineMonitor, logger, scrollLine);
+		return new StaticDjotPreview(webview, resource, contentProvider, previewConfigurations, topmostLineMonitor, logger, contributionProvider, scrollLine);
 	}
 
 	private readonly _preview: DjotPreview;
@@ -434,6 +459,7 @@ export class StaticDjotPreview extends Disposable implements IManagedDjotPreview
 		private readonly _previewConfigurations: DjotPreviewConfigurationManager,
 		topmostLineMonitor: TopmostLineMonitor,
 		logger: ILogger,
+		contributionProvider: DjotContributionProvider,
 		scrollLine?: number,
 	) {
 		super();
@@ -445,7 +471,7 @@ export class StaticDjotPreview extends Disposable implements IManagedDjotPreview
 					fragment
 				}), StaticDjotPreview.customEditorViewType, this._webviewPanel.viewColumn);
 			}
-		}, contentProvider, _previewConfigurations, logger));
+		}, contentProvider, _previewConfigurations, logger, contributionProvider));
 
 		this._register(this._webviewPanel.onDidDispose(() => {
 			this.dispose();
@@ -537,11 +563,12 @@ export class DynamicDjotPreview extends Disposable implements IManagedDjotPrevie
 		previewConfigurations: DjotPreviewConfigurationManager,
 		logger: ILogger,
 		topmostLineMonitor: TopmostLineMonitor,
+		contributionProvider: DjotContributionProvider,
 	): DynamicDjotPreview {
 		webview.iconPath = contentProvider.iconPath;
 
 		return new DynamicDjotPreview(webview, input,
-			contentProvider, previewConfigurations, logger, topmostLineMonitor);
+			contentProvider, previewConfigurations, logger, topmostLineMonitor, contributionProvider);
 	}
 
 	public static create(
@@ -551,6 +578,7 @@ export class DynamicDjotPreview extends Disposable implements IManagedDjotPrevie
 		previewConfigurations: DjotPreviewConfigurationManager,
 		logger: ILogger,
 		topmostLineMonitor: TopmostLineMonitor,
+		contributionProvider: DjotContributionProvider,
 	): DynamicDjotPreview {
 		const webview = vscode.window.createWebviewPanel(
 			DynamicDjotPreview.viewType,
@@ -560,7 +588,7 @@ export class DynamicDjotPreview extends Disposable implements IManagedDjotPrevie
 		webview.iconPath = contentProvider.iconPath;
 
 		return new DynamicDjotPreview(webview, input,
-			contentProvider, previewConfigurations, logger, topmostLineMonitor);
+			contentProvider, previewConfigurations, logger, topmostLineMonitor, contributionProvider);
 	}
 
 	private constructor(
@@ -570,6 +598,7 @@ export class DynamicDjotPreview extends Disposable implements IManagedDjotPrevie
 		private readonly _previewConfigurations: DjotPreviewConfigurationManager,
 		private readonly _logger: ILogger,
 		private readonly _topmostLineMonitor: TopmostLineMonitor,
+		private readonly _contributionProvider: DjotContributionProvider,
 	) {
 		super();
 
@@ -732,6 +761,7 @@ export class DynamicDjotPreview extends Disposable implements IManagedDjotPrevie
 		},
 			this._contentProvider,
 			this._previewConfigurations,
-			this._logger);
+			this._logger,
+			this._contributionProvider);
 	}
 }

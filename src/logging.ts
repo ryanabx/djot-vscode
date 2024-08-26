@@ -35,7 +35,7 @@ export class VsCodeOutputLogger extends Disposable implements ILogger {
 	private _outputChannelValue?: vscode.OutputChannel;
 
 	private get _outputChannel() {
-		this._outputChannelValue ??= this._register(vscode.window.createOutputChannel('Markdown'));
+		this._outputChannelValue ??= this._register(vscode.window.createOutputChannel('Djot'));
 		return this._outputChannelValue;
 	}
 

@@ -12,6 +12,7 @@ import { DynamicDjotPreview as DynamicDjotPreview, IManagedDjotPreview, StaticDj
 import { DjotPreviewConfigurationManager } from './previewConfig';
 import { scrollEditorToLine, StartingScrollFragment } from './scrolling';
 import { TopmostLineMonitor } from './topmostLineMonitor';
+import { DjotContributionProvider } from '../djotExtensions';
 
 
 export interface DynamicPreviewSettings {
@@ -80,6 +81,7 @@ export class DjotPreviewManager extends Disposable implements vscode.WebviewPane
 	public constructor(
 		private readonly _contentProvider: DjDocumentRenderer,
 		private readonly _logger: ILogger,
+		private readonly _contributions: DjotContributionProvider,
 	) {
 		super();
 
@@ -183,6 +185,7 @@ export class DjotPreviewManager extends Disposable implements vscode.WebviewPane
 				this._previewConfigurations,
 				this._logger,
 				this._topmostLineMonitor,
+				this._contributions,
 				);
 
 			this._registerDynamicPreview(preview);
@@ -235,6 +238,7 @@ export class DjotPreviewManager extends Disposable implements vscode.WebviewPane
 			this._previewConfigurations,
 			this._topmostLineMonitor,
 			this._logger,
+			this._contributions,
 			lineNumber
 		);
 		this._registerStaticPreview(preview);
@@ -259,6 +263,7 @@ export class DjotPreviewManager extends Disposable implements vscode.WebviewPane
 			this._previewConfigurations,
 			this._logger,
 			this._topmostLineMonitor,
+			this._contributions,
 			);
 
 		this._activePreview = preview;

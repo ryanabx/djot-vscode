@@ -16,10 +16,108 @@
     "Other",
     "Visualization"
   ],
-  "activationEvents": [],
-  "capabilities": {},
+  "activationEvents": [
+    "onCommand:djot.api.render",
+    "onCommand:djot.api.reloadPlugins",
+    "onWebviewPanel:djot.preview"
+  ],
+  "capabilities": {
+    "virtualWorkspaces": true,
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "%workspaceTrust%",
+      "restrictedConfigurations": [
+        "djot.styles"
+      ]
+    }
+  },
   "main": "./out/extension.js",
   "contributes": {
+    "notebookRenderer": [
+      {
+        "id": "vscode.markdown-it-renderer",
+        "displayName": "Markdown it renderer",
+        "entrypoint": "./notebook-out/index.js",
+        "mimeTypes": [
+          "text/djot",
+          "text/markdown",
+          "text/latex",
+          "text/x-css",
+          "text/x-html",
+          "text/x-json",
+          "text/x-typescript",
+          "text/x-abap",
+          "text/x-apex",
+          "text/x-azcli",
+          "text/x-bat",
+          "text/x-cameligo",
+          "text/x-clojure",
+          "text/x-coffee",
+          "text/x-cpp",
+          "text/x-csharp",
+          "text/x-csp",
+          "text/x-css",
+          "text/x-dart",
+          "text/x-dockerfile",
+          "text/x-ecl",
+          "text/x-fsharp",
+          "text/x-go",
+          "text/x-graphql",
+          "text/x-handlebars",
+          "text/x-hcl",
+          "text/x-html",
+          "text/x-ini",
+          "text/x-java",
+          "text/x-javascript",
+          "text/x-julia",
+          "text/x-kotlin",
+          "text/x-less",
+          "text/x-lexon",
+          "text/x-lua",
+          "text/x-m3",
+          "text/x-markdown",
+          "text/x-mips",
+          "text/x-msdax",
+          "text/x-mysql",
+          "text/x-objective-c/objective",
+          "text/x-pascal",
+          "text/x-pascaligo",
+          "text/x-perl",
+          "text/x-pgsql",
+          "text/x-php",
+          "text/x-postiats",
+          "text/x-powerquery",
+          "text/x-powershell",
+          "text/x-pug",
+          "text/x-python",
+          "text/x-r",
+          "text/x-razor",
+          "text/x-redis",
+          "text/x-redshift",
+          "text/x-restructuredtext",
+          "text/x-ruby",
+          "text/x-rust",
+          "text/x-sb",
+          "text/x-scala",
+          "text/x-scheme",
+          "text/x-scss",
+          "text/x-shell",
+          "text/x-solidity",
+          "text/x-sophia",
+          "text/x-sql",
+          "text/x-st",
+          "text/x-swift",
+          "text/x-systemverilog",
+          "text/x-tcl",
+          "text/x-twig",
+          "text/x-typescript",
+          "text/x-vb",
+          "text/x-xml",
+          "text/x-yaml",
+          "application/json"
+        ]
+      }
+    ],
     "commands": [
       {
         "command": "_djot.copyImage",
@@ -245,6 +343,13 @@
         }
       }
     },
+    "djot.previewStyles": [
+      "./media/djot.css",
+      "./media/highlight.css"
+    ],
+    "djot.previewScripts": [
+      "./media/index.js"
+    ],
     "keybindings": [
       {
         "command": "editor.action.insertSnippet",
@@ -263,6 +368,18 @@
         "args": {
           "snippet": "_${TM_SELECTED_TEXT:$1}_"
         }
+      },
+      {
+        "command": "djot.showPreview",
+        "key": "shift+ctrl+v",
+        "mac": "shift+cmd+v",
+        "when": "editorLangId == djot && !notebookEditorFocused"
+      },
+      {
+        "command": "djot.showPreviewToSide",
+        "key": "ctrl+k v",
+        "mac": "cmd+k v",
+        "when": "editorLangId == djot && !notebookEditorFocused"
       }
     ]
   },
@@ -293,7 +410,6 @@
     "picomatch": "^2.3.1",
     "vscode-languageclient": "^8.0.2",
     "vscode-languageserver-textdocument": "^1.0.11",
-    "vscode-djot-languageserver": "^0.5.0-alpha.8",
     "vscode-uri": "^3.0.3"
   }
 }
