@@ -2,7 +2,7 @@
 	"displayName": "Djot language features",
 	"description": "Provides rich language support for Djot.",
 	
-	"djot.saveHTML.title": "Export HTML Document",
+	"djot.saveHTML": "Export HTML Document",
 
 	"djot.copyImage.title": "Copy Image",
 	"djot.preview.breaks.desc": "Sets how line-breaks are rendered in the Djot preview. Setting it to `true` creates a `<br>` for newlines inside paragraphs.",
@@ -26,5 +26,6 @@
 	"djot.server.log.desc": "Controls the logging level of the Djot language server.",
 	"djot.preview.refresh.title": "Refresh Preview",
 	"djot.preview.toggleLock.title": "Toggle Preview Locking",
-	"djot.findAllFileReferences": "Find File References"
+	"djot.findAllFileReferences": "Find File References",
+	"workspaceTrust": "Required for loading styles configured in the workspace."
 }

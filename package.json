@@ -7,7 +7,7 @@
   "author": "ryanabx, wisim3000, contributors",
   "repository": "https://github.com/ryanabx/djot-vscode",
   "bugs": "https://github.com/ryanabx/djot-vscode/issues/new",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -33,91 +33,6 @@
   },
   "main": "./out/extension.js",
   "contributes": {
-    "notebookRenderer": [
-      {
-        "id": "vscode.markdown-it-renderer",
-        "displayName": "Markdown it renderer",
-        "entrypoint": "./notebook-out/index.js",
-        "mimeTypes": [
-          "text/djot",
-          "text/markdown",
-          "text/latex",
-          "text/x-css",
-          "text/x-html",
-          "text/x-json",
-          "text/x-typescript",
-          "text/x-abap",
-          "text/x-apex",
-          "text/x-azcli",
-          "text/x-bat",
-          "text/x-cameligo",
-          "text/x-clojure",
-          "text/x-coffee",
-          "text/x-cpp",
-          "text/x-csharp",
-          "text/x-csp",
-          "text/x-css",
-          "text/x-dart",
-          "text/x-dockerfile",
-          "text/x-ecl",
-          "text/x-fsharp",
-          "text/x-go",
-          "text/x-graphql",
-          "text/x-handlebars",
-          "text/x-hcl",
-          "text/x-html",
-          "text/x-ini",
-          "text/x-java",
-          "text/x-javascript",
-          "text/x-julia",
-          "text/x-kotlin",
-          "text/x-less",
-          "text/x-lexon",
-          "text/x-lua",
-          "text/x-m3",
-          "text/x-markdown",
-          "text/x-mips",
-          "text/x-msdax",
-          "text/x-mysql",
-          "text/x-objective-c/objective",
-          "text/x-pascal",
-          "text/x-pascaligo",
-          "text/x-perl",
-          "text/x-pgsql",
-          "text/x-php",
-          "text/x-postiats",
-          "text/x-powerquery",
-          "text/x-powershell",
-          "text/x-pug",
-          "text/x-python",
-          "text/x-r",
-          "text/x-razor",
-          "text/x-redis",
-          "text/x-redshift",
-          "text/x-restructuredtext",
-          "text/x-ruby",
-          "text/x-rust",
-          "text/x-sb",
-          "text/x-scala",
-          "text/x-scheme",
-          "text/x-scss",
-          "text/x-shell",
-          "text/x-solidity",
-          "text/x-sophia",
-          "text/x-sql",
-          "text/x-st",
-          "text/x-swift",
-          "text/x-systemverilog",
-          "text/x-tcl",
-          "text/x-twig",
-          "text/x-typescript",
-          "text/x-vb",
-          "text/x-xml",
-          "text/x-yaml",
-          "application/json"
-        ]
-      }
-    ],
     "commands": [
       {
         "command": "_djot.copyImage",
@@ -167,11 +82,6 @@
         "category": "Djot"
       },
       {
-        "command": "djot.findAllFileReferences",
-        "title": "%djot.findAllFileReferences%",
-        "category": "Djot"
-      },
-      {
         "command": "djot.saveHTML",
         "title": "%djot.saveHTML%",
         "category": "Djot"
@@ -217,11 +127,6 @@
           "command": "djot.showPreview",
           "when": "resourceLangId == djot && !hasCustomDjotPreview",
           "group": "navigation"
-        },
-        {
-          "command": "djot.findAllFileReferences",
-          "when": "resourceLangId == djot",
-          "group": "4_search"
         }
       ],
       "editor/title/context": [
@@ -229,10 +134,6 @@
           "command": "djot.showPreview",
           "when": "resourceLangId == djot && !hasCustomDjotPreview",
           "group": "1_open"
-        },
-        {
-          "command": "djot.findAllFileReferences",
-          "when": "resourceLangId == djot"
         }
       ],
       "commandPalette": [
@@ -279,10 +180,6 @@
         {
           "command": "djot.preview.refresh",
           "when": "activeWebviewPanelId == 'djot.preview' || activeCustomEditorId == 'vscode.djot.preview.editor'"
-        },
-        {
-          "command": "djot.findAllFileReferences",
-          "when": "editorLangId == djot"
         },
         {
           "command": "djot.saveHTML",
