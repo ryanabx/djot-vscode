@@ -9,9 +9,9 @@
    id="svg1"
    inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
    sodipodi:docname="icon.svg"
-   inkscape:export-filename="djot.png"
-   inkscape:export-xdpi="2048"
-   inkscape:export-ydpi="2048"
+   inkscape:export-filename="../icons/djot.png"
+   inkscape:export-xdpi="256"
+   inkscape:export-ydpi="256"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -26,16 +26,16 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="6.3286195"
-     inkscape:cx="-19.751543"
-     inkscape:cy="-6.6365184"
+     inkscape:zoom="12.657239"
+     inkscape:cx="12.680491"
+     inkscape:cy="7.1105555"
      inkscape:window-width="1280"
-     inkscape:window-height="648"
+     inkscape:window-height="728"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
-     inkscape:export-bgcolor="#ffffffff" />
+     inkscape:export-bgcolor="#ffffff00" />
   <defs
      id="defs1" />
   <g
@@ -44,14 +44,14 @@
      id="layer1">
     <text
        xml:space="preserve"
-       style="font-size:4.93889px;fill:#00f997;stroke-width:0.264583;fill-opacity:1"
-       x="0.62838489"
-       y="4.4193687"
+       style="font-size:3.75946px;fill:#79d0ae;fill-opacity:1;stroke-width:0.201399"
+       x="1.2365285"
+       y="4.1222076"
        id="text1"><tspan
          sodipodi:role="line"
          id="tspan1"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans Bold';stroke-width:0.264583;fill:#00f997;fill-opacity:1"
-         x="0.62838489"
-         y="4.4193687">DJ</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.75946px;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans Bold';fill:#79d0ae;fill-opacity:1;stroke-width:0.201399"
+         x="1.2365285"
+         y="4.1222076">DJ</tspan></text>
   </g>
 </svg>

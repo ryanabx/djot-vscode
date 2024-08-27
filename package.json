@@ -8,7 +8,7 @@
   "author": "ryanabx",
   "repository": "https://github.com/ryanabx/djot-vscode",
   "bugs": "https://github.com/ryanabx/djot-vscode/issues/new",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "engines": {
     "vscode": "^1.92.0"
   },
